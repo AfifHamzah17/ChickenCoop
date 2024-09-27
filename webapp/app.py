@@ -58,7 +58,7 @@ def create_chart(x_data, y_data, title):
 @app.route('/')
 @login_required
 def index():
-    api_key = 'PVXUR06PUSQ0J31F'
+    api_key = '{your_api_key}'
     data = get_thingspeak_data(api_key)
     
     # Check and print the response for debugging
