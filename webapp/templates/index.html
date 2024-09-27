@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thingspeak Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-bold mb-4">Encrypted Data from Thingspeak</h1>
+        <p class="mb-2">Field 1: <span id="encrypted_field1" class="font-mono">{{ encrypted_field1 }}</span></p>
+        <p class="mb-2">Field 2: <span id="encrypted_field2" class="font-mono">{{ encrypted_field2 }}</span></p>
+        <p class="mb-2">Field 3: <span id="encrypted_field3" class="font-mono">{{ encrypted_field3 }}</span></p>
+        <p class="mb-2">Field 4: <span id="encrypted_field4" class="font-mono">{{ encrypted_field4 }}</span></p>
+        <p class="text-sm text-gray-500">Data recorded at: <span id="timestamp">{{ timestamp }}</span></p>        
+
+        <h2 class="text-xl font-bold mt-6">Charts</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="font-semibold">Chart Arus</h3>
+                <div id="chart1"><img src="data:image/png;base64,{{ img1 }}" /></div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="font-semibold">Chart Daya</h3>
+                <div id="chart2"><img src="data:image/png;base64,{{ img2 }}" /></div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="font-semibold">Chart Lampu</h3>
+                <div id="chart3"><img src="data:image/png;base64,{{ img3 }}" /></div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="font-semibold">Chart Solar Panel</h3>
+                <div id="chart4"><img src="data:image/png;base64,{{ img4 }}" /></div>
+            </div>
+        </div>
+    </div>
+    <script>
+function fetchData() {
+    fetch('/api/data')
+        .then(response => response.json())
+        .then(data => {
+            if (!data.error) {
+                document.querySelector('#encrypted_field1').textContent = data.encrypted_field1;
+                document.querySelector('#encrypted_field2').textContent = data.encrypted_field2;
+                document.querySelector('#encrypted_field3').textContent = data.encrypted_field3;
+                document.querySelector('#encrypted_field4').textContent = data.encrypted_field4;
+                document.querySelector('#timestamp').textContent = data.timestamp;
+
+                // Update the chart images
+                document.querySelector('#chart1').innerHTML = `<img src="${data.img1}" />`;
+                document.querySelector('#chart2').innerHTML = `<img src="${data.img2}" />`;
+                document.querySelector('#chart3').innerHTML = `<img src="${data.img3}" />`;
+                document.querySelector('#chart4').innerHTML = `<img src="${data.img4}" />`;
+            } else {
+                console.error(data.error);
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+    </script>
+    
+</body>
+</html>

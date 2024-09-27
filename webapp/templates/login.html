@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login KKN Unimed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css">
+    <link rel="icon" href="">
+    <style>
+        body {
+            background: linear-gradient(45deg, #2980b9, #8e44ad);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            margin-top: 5rem;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            text-align: center;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Sistem kandang ayam otomatis<br> Menggunakan Python</h3>
+                        <img src="{{ url_for('static', filename='pys.png') }}" alt="Python Logo" height="80" class="my-3" />
+                    </div>
+                    <div class="card-body">
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for message in messages %}
+                                            <li>{{ message }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" id="username" required class="form-control" name="username" placeholder="Silahkan Masukkan Username Anda">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" id="password" required class="form-control" name="password" placeholder="Silahkan Masukkan Password Anda">
+                                <input type="checkbox" onclick="togglePassword()"> Show Password
+                            </div>
+                            <button class="btn btn-primary w-100" type="submit">Log In</button>
+                        </form>
+                        <div class="mt-3" style="font-weight:600; font-size:12px;">Contact Person:</div>
+                        <div style="font-size: 10px;">
+                            baal +6281367913894
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function togglePassword() {
+            const passwordInput = document.querySelector('input[name="password"]');
+            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
