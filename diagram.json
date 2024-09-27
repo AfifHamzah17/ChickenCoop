@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": 25.8, "left": 12.4, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 28.8, "left": -119.96, "attrs": {} },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -102.4,
+      "left": -143.2,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -111.2,
+      "left": 117.42,
+      "attrs": {}
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -105.4, "left": 278.4, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -22.8,
+      "left": -245.8,
+      "attrs": { "color": "red" }
+    },
+    { "type": "wokwi-ds1307", "id": "rtc1", "top": 157.8, "left": 403.3, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -38.1, "left": 397.8, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:3V3", "bb1:tp.1", "red", [ "h-9.45", "v-48", "h172.8" ] ],
+    [ "esp:GND.2", "bb1:tn.1", "black", [ "v0" ] ],
+    [ "ldr1:VCC", "bb1:tp.3", "red", [ "h0" ] ],
+    [ "ldr1:GND", "bb1:tn.3", "black", [ "h0" ] ],
+    [ "ldr1:AO", "esp:34", "green", [ "h0", "v47.3", "h-182.4", "v105.6" ] ],
+    [ "pir1:VCC", "bb1:tp.5", "red", [ "v9.6", "h-67.2" ] ],
+    [ "pir1:GND", "bb1:tn.5", "black", [ "v28.8", "h-0.26" ] ],
+    [ "pir1:OUT", "esp:33", "gold", [ "v0", "h-345.74", "v134.4" ] ],
+    [ "relay1:VCC", "bb1:tp.6", "red", [ "h-57.6", "v105.6", "h-115.2" ] ],
+    [ "relay1:GND", "bb1:tn.7", "black", [ "h-48", "v105.2", "h-115.2" ] ],
+    [ "relay1:IN", "esp:25", "blue", [ "h0", "v76.6", "h96", "v240", "h-537.6", "v-105.6" ] ],
+    [ "led1:A", "bb1:tp.2", "red", [ "v0" ] ],
+    [ "led1:C", "esp:26", "cyan", [ "v0" ] ],
+    [ "rtc1:GND", "bb1:tn.25", "black", [ "h-48", "v-124.8" ] ],
+    [ "rtc1:5V", "bb1:bp.11", "red", [ "h-48", "v18.8", "h-201.6" ] ],
+    [ "bb1:bp.5", "esp:5V", "red", [ "v-10.5", "h-84.8", "v57.6", "h-115.2", "v-28.8" ] ],
+    [ "rtc1:SDA", "bb1:3b.j", "green", [ "h-355.2", "v-0.3" ] ],
+    [ "bb1:3b.f", "esp:21", "green", [ "v-9.6", "h-48", "v-38.4" ] ],
+    [ "esp:22", "bb1:10t.a", "purple", [ "h28.8", "v-9.6", "h115.2" ] ],
+    [ "bb1:10t.e", "rtc1:SCL", "purple", [ "v19.2", "h230.4", "v76.8" ] ],
+    [ "bb1:10t.d", "bb1:10t.b", "green", [ "v0" ] ],
+    [ "bb1:3b.i", "bb1:3b.g", "purple", [ "v0" ] ],
+    [ "dht1:VCC", "bb1:tp.25", "red", [ "v9.6", "h-67.2", "v-48" ] ],
+    [ "dht1:GND", "bb1:tn.21", "black", [ "v19.2", "h-115.2", "v-38.4", "h-48" ] ],
+    [ "dht1:SDA", "bb1:6b.f", "blue", [ "v48", "h-335.9" ] ],
+    [ "bb1:6b.j", "esp:15", "blue", [ "v9.6", "h-86.4" ] ],
+    [ "bb1:6b.i", "bb1:6b.g", "cyan", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
