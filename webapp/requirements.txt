@@ -1,5 +1,9 @@
-Flask
-Flask-SQLAlchemy
-Flask-Login
-cryptography
-requests
+Flask==2.0.1
+Flask-SQLAlchemy==2.5.1
+Flask-Login==0.5.0
+cryptography==3.4.7
+requests==2.26.0
+plotly==5.5.0
+Flask-SocketIO==5.1.0
+pytz==2021.3
+gunicorn==20.1.0  # Add Gunicorn as a production server for Flask
